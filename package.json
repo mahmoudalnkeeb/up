@@ -1,0 +1,20 @@
+{
+  "name": "socialmediawebsite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-frontend": "cd frontend && npm install",
+    "build-frontend": "cd frontend && npm run build",
+    "start-frontend": "cd frontend && npm start",
+    "install-backend": "cd frontend && npm install",
+    "start-backend": "cd backend && npm run prod",
+    "install-jsonServer": "cd server && npm install",
+    "start-jsonServer": "cd server && npm run server",
+    "install-all": "npm run install-frontend && npm run install-backend && npm run install-jsonServer",
+    "deploy": "sh automate.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

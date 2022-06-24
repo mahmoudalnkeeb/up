@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap");
+:root {
+  --var-primary-color: #e0e0e0;
+  --var-secondary-color: #6a1db8;
+  --var-third-color: #7a21d353;
+  --var-post-color: linear-gradient(90deg, #f7f5f2, #f5f5f5);
+  --var-notification-items: #6a1db8;
+  --var-header-color: linear-gradient(90deg, #f7f5f2, #f5f5f5);
+  --var-header-height: 55px;
+  --var-profile-Bgcolor: linear-gradient(30deg, #6a1db8, #b72272);
+  --var-profile-secondary-Bgcolor: linear-gradient(90deg, #f7f5f2, #f5f5f5);
+  --var-aside-bgColor: linear-gradient(45deg, #f7f5f2, #f5f5f5);
+  --var-aside-color: #252525;
+  --var-aside-hover-color: #6a1db8;
+  --var-hover-color: #6a1db8;
+  --var-overview-color: #eeeded;
+  --var-overlay-color: #1d1d1d92;
+  --var-background-overlay-layer: linear-gradient(45deg, #32323244, #5b5b5b81);
+  --var-backdrop-overview-color: linear-gradient(90deg, #f7f5f2, #f5f5f5);
+  --var-text-color: #141414;
+  --var-icon-background: #deddddda;
+  --var-border-color: #afafafbf;
+  --var-comments-bg-clr: #eeeeee;
+  --var-active-indecator: #36ae7c;
+  --var-border-radius: 0.6rem;
+  --var-shadow-color: #8ea6b4;
+}
+
+.comments-wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 1rem;
+  margin-block: 1rem;
+  border-radius: var(--var-border-radius);
+}
+
+.comment-box {
+  position: relative;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.comment-header {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-inline: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.comment-options {
+  position: relative;
+  font-size: 1.4rem;
+  color: var(--var-text-color);
+  cursor: pointer;
+}
+
+.comment-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1rem;
+}
+
+.commentAuther-image {
+  width: 35px;
+  height: 35px;
+}
+
+.commentAuther-image > img {
+  max-width: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--var-secondary-color);
+}
+
+.user-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.user-details > :first-child {
+  margin-bottom: 0;
+  text-transform: capitalize;
+}
+
+.user-details small {
+  text-transform: uppercase;
+}
+
+.comment {
+  position: relative;
+  list-style: none;
+  padding-left: 45px;
+}
+
+.comment > li {
+  border-radius: 45px;
+  padding: 0.375rem 1rem;
+  background-color: #c4c4c4;
+  margin-bottom: 0.5rem;
+}
+
+.comment > li > :first-child {
+  margin-bottom: 0;
+}
+
+.comment:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 25px;
+  width: 2px;
+  height: 100%;
+  background-color: var(--var-border-color);
+}
+
+.comment:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 25px;
+  width: 15px;
+  height: 2px;
+  background-color: var(--var-border-color);
+}
+/*# sourceMappingURL=comments.module.css.map */

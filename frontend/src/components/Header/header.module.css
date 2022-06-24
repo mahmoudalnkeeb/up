@@ -1,0 +1,335 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap");
+:root {
+  --var-primary-color: #e0e0e0;
+  --var-secondary-color: #6a1db8;
+  --var-third-color: #7a21d353;
+  --var-post-color: linear-gradient(90deg, #f7f5f2, #f5f5f5);
+  --var-notification-items: #6a1db8;
+  --var-header-color: linear-gradient(90deg, #f7f5f2, #f5f5f5);
+  --var-header-height: 55px;
+  --var-profile-Bgcolor: linear-gradient(30deg, #6a1db8, #b72272);
+  --var-profile-secondary-Bgcolor: linear-gradient(90deg, #f7f5f2, #f5f5f5);
+  --var-aside-bgColor: linear-gradient(45deg, #f7f5f2, #f5f5f5);
+  --var-aside-color: #252525;
+  --var-aside-hover-color: #6a1db8;
+  --var-hover-color: #6a1db8;
+  --var-overview-color: #eeeded;
+  --var-overlay-color: #1d1d1d92;
+  --var-background-overlay-layer: linear-gradient(45deg, #32323244, #5b5b5b81);
+  --var-backdrop-overview-color: linear-gradient(90deg, #f7f5f2, #f5f5f5);
+  --var-text-color: #141414;
+  --var-icon-background: #deddddda;
+  --var-border-color: #afafafbf;
+  --var-comments-bg-clr: #eeeeee;
+  --var-active-indecator: #36ae7c;
+  --var-border-radius: 0.6rem;
+  --var-shadow-color: #8ea6b4;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1002;
+  width: 100%;
+  min-height: var(--var-header-height);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: var(--var-header-color);
+  -webkit-box-shadow: 2px 3px 0.7rem var(--var-shadow-color);
+          box-shadow: 2px 3px 0.7rem var(--var-shadow-color);
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 1rem 0 0.3rem;
+  }
+}
+
+.logo {
+  height: 65px;
+  width: 140px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.search-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 30%;
+  height: 30px;
+  -webkit-margin-end: auto;
+          margin-inline-end: auto;
+  -webkit-transition: -webkit-box-flex 0.5s ease-out;
+  transition: -webkit-box-flex 0.5s ease-out;
+  transition: flex 0.5s ease-out;
+  transition: flex 0.5s ease-out, -webkit-box-flex 0.5s ease-out, -ms-flex 0.5s ease-out;
+  border: 2px solid transparent;
+  background: var(--var-primary-color);
+  border-radius: var(--var-border-radius);
+}
+
+.search-wrapper > input {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 85%;
+  height: 100%;
+  border: none;
+  border-left: 0;
+  color: var(--var-text-color);
+  padding: 0 0.5rem;
+  border-top-right-radius: var(--var-border-radius);
+  border-bottom-right-radius: var(--var-border-radius);
+  background: var(--var-primary-color);
+}
+
+.search-wrapper > input:focus {
+  outline: none;
+  border: 1px solid var(--var-secondary-color);
+  background: var(--var-post-color);
+}
+
+.search-wrapper > button {
+  height: 100%;
+  width: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: none;
+  color: #fff;
+  background: var(--var-secondary-color);
+  border-bottom-left-radius: var(--var-border-radius);
+  border-top-left-radius: var(--var-border-radius);
+}
+
+.search-wrapper > button:focus {
+  border: 1px solid var(--var-secondary-color);
+}
+
+.togglerButton {
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  width: 60px;
+}
+
+.togglerButton > button {
+  width: 45px;
+  height: 55px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  color: var(--var-text-color);
+  font-size: 2rem;
+  -webkit-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+  border: none;
+}
+
+.togglerButton > button:focus {
+  background: var(--var-post-color);
+}
+
+.togglerButton > button :hover {
+  background: var(--var-post-color);
+}
+
+@media (max-width: 768px) {
+  .togglerButton {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+  }
+}
+
+.notification-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.7rem;
+  width: 130px;
+  height: 65px;
+}
+
+.notification-icons,
+.messages-icons {
+  position: relative;
+  z-index: 3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  -webkit-transition: background-color 0.3s ease-out, background 0.3s ease-out;
+  transition: background-color 0.3s ease-out, background 0.3s ease-out;
+  color: var(--var-text-color);
+}
+
+.notification-icons::after,
+.messages-icons::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--var-post-color);
+}
+
+.notification-icons:hover,
+.messages-icons:hover {
+  background-color: var(--var-secondary-color);
+}
+
+.user {
+  position: relative;
+  min-width: 130px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1.5rem;
+  margin-inline: 1rem;
+  color: var(--var-text-color);
+}
+
+@media (max-width: 767px) {
+  .user {
+    min-width: -webkit-fit-content !important;
+    min-width: -moz-fit-content !important;
+    min-width: fit-content !important;
+  }
+}
+
+.user-image {
+  position: relative;
+  z-index: 5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 60px;
+  height: 60px;
+  padding: 0.4rem;
+  border: none;
+  background-color: transparent;
+}
+
+.user-image > img {
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 2px solid var(--var-secondary-color);
+  padding: 2px;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 8px var(--var-shadow-color);
+          box-shadow: 0 0 8px var(--var-shadow-color);
+}
+
+.user-image .indecator {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  -webkit-box-shadow: 4px -3px 20px;
+          box-shadow: 4px -3px 20px;
+}
+
+.userName {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-transform: capitalize;
+}
+
+.userName > p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .userName {
+    display: none;
+  }
+}
+/*# sourceMappingURL=header.module.css.map */

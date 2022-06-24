@@ -1,0 +1,61 @@
+@import "../../scss//utilities";
+.main-sidebar {
+  position: relative;
+  z-index: 5;
+  height: calc(100vh - 100px);
+  min-width: 280px;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: $aside-bgColor;
+  backdrop-filter: blur(35px);
+  border-radius: $border-radius;
+  overflow-x: hidden;
+  box-shadow: -1px 1px 0.35rem $shadow-color;
+  transition: transform 0.3s ease-in-out;
+
+  @media (min-width: 992px) {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  @media (max-width: 768px) {
+    position: absolute;
+    z-index: 7;
+    left: 0;
+    top: 140px;
+    width: 100%;
+    height: calc(100% - 140px);
+  }
+}
+.hide-sidebar-ltr {
+  @media (max-width: 800px) {
+    transform: translateX(-100%);
+  }
+}
+.hide-sidebar-rtl {
+  @media (max-width: 800px) {
+    transform: translateX(100%);
+  }
+}
+
+.navbar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-inline: 0.5rem;
+  gap: 0.3rem;
+}
+
+.navLink {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+}

@@ -1,0 +1,97 @@
+@import "../../../../scss/utilities";
+.comments-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 1rem;
+  margin-block: 1rem;
+  border-radius: $border-radius;
+}
+.comment-box {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.comment-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.comment-options {
+  position: relative;
+  font-size: 1.4rem;
+  color: $text-color;
+  cursor: pointer;
+}
+.comment-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.commentAuther-image {
+  width: 35px;
+  height: 35px;
+  > img {
+    max-width: 100%;
+    border-radius: 50%;
+    border: 2px solid $secondary-color;
+  }
+}
+.user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  > :first-child {
+    margin-bottom: 0;
+    text-transform: capitalize;
+  }
+  small {
+    text-transform: uppercase;
+  }
+}
+.comment {
+  position: relative;
+  list-style: none;
+  padding-left: 45px;
+
+  > li {
+    border-radius: 45px;
+    padding: 0.375rem 1rem;
+    background-color: #c4c4c4;
+    margin-bottom: 0.5rem;
+
+    > :first-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 25px;
+    width: 2px;
+    height: 100%;
+    background-color: $border-color;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 25px;
+    width: 15px;
+    height: 2px;
+    background-color: $border-color;
+  }
+}
