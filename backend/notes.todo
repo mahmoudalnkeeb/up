@@ -1,14 +1,13 @@
 # Project Notes
 
-1- database
-2- database to use SQL , NOSQL ---- done 
+1- database design
+2- database to use (SQL , NOSQL)[done] 
 3- all features will be available
-    - post ( up , comment , share , content , media )
+    - post ( up , comment , share , content , phote )
     - article ()
-    - profile - user (name , username , email , phone , verfied , )
-    - 
+    - profile - user (name , username , password , email , phone , dob , profile_pic , verified , bio )
+    - timeline ()
+    - report system
 4- how to impalement these features
 5- how to store files
 6- AUTH way used
-
-
