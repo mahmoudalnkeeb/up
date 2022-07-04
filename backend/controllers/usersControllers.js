@@ -1,58 +1,96 @@
 const bcrypt = require('../utils/bcrypt');
 const User = require('../models/user');
+const user = new User();
 const Jwt = require('../utils/jwt');
+const Id = require('../utils/genId');
+let profileImage = '';
 class UserController {
-  constructor(data) {
-    this.name = data.name;
-    this.username = data.username;
-    this.password = data.password;
-    this.email = data.email;
-    this.phone = data.phone;
-    this.dob = data.dob;
-    this.profile_pic = data.profile_pic;
-    this.bio = data.bio;
-    this.verified = data.verified;
+  // CREATE controller methods
+  async signUp(data) {
+    console.log('object');
+    let newData = {
+      id: new Id(16).generate(),
+      fname: data.fname,
+      lname: data.lname,
+      username: data.username,
+      password: bcrypt.hash(data.password),
+      email: data.email,
+      phone: data.phone,
+      dob: data.dob,
+      gender: data.gender,
+      country: data.country,
+      profile_pic: data.profile_pic,
+      bio: data.bio,
+    };
+    await user.signUp(newData);
+    return { message: 'created successfully' };
   }
-  async signUp() {
-    try {
-      let data = {
-        name: this.name,
-        username: this.username,
-        password: bcrypt.hash(this.password),
-        email: this.email,
-        phone: this.phone,
-        dob: this.dob,
-        profile_pic: this.profile_pic,
-        bio: this.bio,
-        verified: this.verified,
-      };
 
-      let user = new User(data);
-      let response = await user.signUp();
-      return response;
-    } catch (error) {
-      return { message: 'something went wrong' };
+  // READ controller methods
+  async login(data) {
+    let username = data.username,
+      password = data.password;
+    let userData = await user.login(username);
+    if (bcrypt.compare(userData.password, password)) {
+      let jwt = new Jwt(userData.id, userData.username, Date.now());
+      let token = jwt.sign();
+      return token;
+    }
+    return { message: 'wrong data' };
+  }
+  async getuserById(id) {
+    let userData = await user.getuserById(id);
+    return userData;
+  }
+
+  // DELETE controller methods
+  async deleteUser(id, password) {
+    let userPass = await user.getPass(id);
+    let hashedPass = await userPass.password;
+    if (bcrypt.compare(hashedPass, password)) {
+      let res = await user.delete(id, password);
+      return res;
+    } else {
+      return { message: 'wrong password' };
     }
   }
-  static async login(data) {
-    try {
-      let username = data.username,
-        password = data.password;
-      let userData = await User.login(username);
-      if (bcrypt.compare(userData.password, password)) {
-        let jwt = new Jwt({ username, date: Date.now() });
-        let token = jwt.sign();
-        return token;
-      }
-      return { message: 'wrong data' };
-    } catch (error) {
-      return { message: 'something went wrong' };
+
+  // UPDATE controller methods
+
+  // FOLLOW METHOD
+  async follow(id, follow_id) {
+    let followUser = await user.follow(id, follow_id);
+    return followUser
+  }
+  // UNFOLLOW METHOD
+  async unfollow(id, unfollow_id) {
+    let unfollowUser = await user.unfollow(id, unfollow_id);
+    return unfollowUser
+  }
+
+  // CHANGE NAME
+  async updateName(fname, lname, id) {
+    return await user.updateName(fname, lname, id);
+  }
+
+  // CHANGE PASSWORD
+  async updatePass(oldPass, newPass, id) {
+    let userPass = await user.getPass(id);
+    let hashedPass = await userPass.password;
+    if (bcrypt.compare(hashedPass, oldPass)) {
+      let newPassword = bcrypt.hash(newPass);
+      let pass = await user.updatePass(id, newPassword);
+      return pass;
+    } else {
+      return { message: 'wrong password' };
     }
   }
-  static getUserById(id) {}
-  static getAllUsers() {}
-  static deleteUser(id) {}
-  static updateUser(data) {}
+
+  // CHANGE PROFILE PICTURE
+  async updatePhoto(newPhoto, id) {}
+
+  // CHANGE BIO
+  async updateBio(newBio, id) {}
 }
 
 module.exports = UserController;

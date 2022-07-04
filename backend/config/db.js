@@ -12,7 +12,8 @@ let client = new pg.Pool({
   database: DB_NAME,
   host: DB_HOST,
   password: DB_PASS,
-  user: DB_USER
+  user: DB_USER,
+  port: DB_PORT
 })
 
 module.exports = client

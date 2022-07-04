@@ -3,11 +3,9 @@ const authorization = (req, res, next) => {
   let token = req.cookies.token;
   let authorized = verify(token) ? true : false;
   if (authorized) {
-    req.authorized = true;
     return next();
   } else {
-    req.authorized = false;
-    next();
+    return res.status(401).json({ message: 'unauthorized' });
   }
 };
 
