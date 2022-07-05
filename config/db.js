@@ -14,6 +14,7 @@ let client = new pg.Pool({
   user,
   password,
   database,
+  ssl: true,
 });
 
 module.exports = client;
