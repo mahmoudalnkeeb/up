@@ -3,11 +3,9 @@ const User = require('../models/user');
 const user = new User();
 const Jwt = require('../utils/jwt');
 const Id = require('../utils/genId');
-let profileImage = '';
 class UserController {
   // CREATE controller methods
   async signUp(data) {
-    console.log('object');
     let newData = {
       id: new Id(16).generate(),
       fname: data.fname,

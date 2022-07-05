@@ -6,6 +6,13 @@ const articles = require('./apis/articles');
 const upload = require('./apis/upload');
 const dashboard = require('./apis/dashboard');
 
+router.get('/' , (req , res , next)=>{
+    try {
+        res.send('welcome')
+    } catch (error) {
+        next(error)
+    }
+})
 router.use('/home', home);
 router.use('/users', users);
 router.use('/posts', posts);
