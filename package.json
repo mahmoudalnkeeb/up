@@ -2,8 +2,9 @@
   "name": "socialmediawebsite",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./backend/server.js",
   "scripts": {
+    "start":"node ./backend/server.js",
     "install-frontend": "cd frontend && npm install",
     "build-frontend": "cd frontend && npm run build",
     "start-frontend": "cd frontend && npm start",
