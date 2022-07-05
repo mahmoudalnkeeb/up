@@ -7,13 +7,18 @@ let databaseUrl = process.env.DATABASE_URL;
 const { host, port, user, password, database } = new DsnParser(
   databaseUrl
 ).getParts();
-console.log({ host, port, user, password, database });
 let client = new pg.Pool({
   host,
   port,
   user,
   password,
   database,
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  },
 });
 
 module.exports = client;
