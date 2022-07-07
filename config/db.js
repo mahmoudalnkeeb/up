@@ -1,15 +1,30 @@
 const pg = require('pg');
-let parser = require('pg-connection-string').parse;
+const parser = require('pg-connection-string').parse;
 const dotenv = require('dotenv');
 dotenv.config();
-let databaseUrl = process.env.DATABASE_URL;
+const databaseUrlDev = process.env.DATABASE_URL_DEV;
+const databaseUrl= process.env.DATABASE_URL;
+const env = process.env.ENV;
 
-const { host, port, user, password, database } = parser(databaseUrl);
-let client = new pg.Pool({
-  host,
-  port,
-  user,
-  password,
-  database,
-});
+let client;
+
+if (env == 'dev') {
+  let { host, port, user, password, database } = parser(databaseUrlDev);
+  client = new pg.Pool({
+    host,
+    port,
+    user,
+    password,
+    database,
+  });
+} else {
+  let { host, port, user, password, database } = parser(databaseUrl);
+  client = new pg.Pool({
+    host,
+    port,
+    user,
+    password,
+    database,
+  });
+}
 module.exports = client;
