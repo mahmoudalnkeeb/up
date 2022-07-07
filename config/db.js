@@ -1,12 +1,10 @@
 const pg = require('pg');
-let DsnParser = require('dsn-parser');
+let parser = require('pg-connection-string').parse;
 const dotenv = require('dotenv');
 dotenv.config();
 let databaseUrl = process.env.DATABASE_URL;
 
-const { host, port, user, password, database } = new DsnParser(
-  databaseUrl
-).getParts();
+const { host, port, user, password, database } = parser(databaseUrl);
 let client = new pg.Pool({
   host,
   port,
@@ -15,5 +13,4 @@ let client = new pg.Pool({
   database,
   ssl: { rejectUnauthorized: false },
 });
-
 module.exports = client;

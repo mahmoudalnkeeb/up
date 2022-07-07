@@ -11,3 +11,4 @@
 4- how to impalement these features
 5- how to store files
 6- AUTH way used
+postgres://postgres:1475963@localhost:5432/social
