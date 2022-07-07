@@ -10,6 +10,9 @@ const router = require('express').Router();
 // get post by id
 router.get('/:id', authorization, (req, res, next) => {
   try {
+    let id = req.params.id;
+    let post = await postsController.getPostByid(id)
+    res.status(200).json(post)
   } catch (error) {
     next(error);
   }
@@ -51,4 +54,35 @@ router.post('/create', images.post, authorization, async (req, res, next) => {
     next(error);
   }
 });
+
+// PUT requests 
+
+router.put('/up' , (req , res , next)=>{
+  try {
+    let id = req.query.id
+    await postsController.upPost(id);
+    res.status(200).json({message:'post uped'})
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/' , (req , res , next)=>{
+  try {
+    let {id , content} = req.body
+    await postsController.editPost(id , content)
+    res.status(200).json({message:'post edited'})
+  } catch (error) {
+    next(error)
+  }
+})
+router.delete('/:id' , (req , res , next)=>{
+  try {
+    let id = req.params.id
+    await postsController.deletePost(id)
+    res.status(200).json({message:'post deleted'})
+  } catch (error) {
+    next(error)
+  }
+})
 module.exports = router;
