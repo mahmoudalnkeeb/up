@@ -8,7 +8,7 @@ const router = require('express').Router();
 // GET requests
 
 // get post by id
-router.get('/:id', authorization, (req, res, next) => {
+router.get('/:id', authorization, async (req, res, next) => {
   try {
     let id = req.params.id;
     let post = await postsController.getPostByid(id)
@@ -57,7 +57,7 @@ router.post('/create', images.post, authorization, async (req, res, next) => {
 
 // PUT requests 
 
-router.put('/up' , (req , res , next)=>{
+router.put('/up' , async (req , res , next)=>{
   try {
     let id = req.query.id
     await postsController.upPost(id);
@@ -67,7 +67,7 @@ router.put('/up' , (req , res , next)=>{
   }
 })
 
-router.put('/' , (req , res , next)=>{
+router.put('/' , async (req , res , next)=>{
   try {
     let {id , content} = req.body
     await postsController.editPost(id , content)
@@ -76,7 +76,7 @@ router.put('/' , (req , res , next)=>{
     next(error)
   }
 })
-router.delete('/:id' , (req , res , next)=>{
+router.delete('/:id' , async (req , res , next)=>{
   try {
     let id = req.params.id
     await postsController.deletePost(id)
