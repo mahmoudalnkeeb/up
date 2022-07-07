@@ -11,6 +11,5 @@ let client = new pg.Pool({
   user,
   password,
   database,
-  ssl: { rejectUnauthorized: false },
 });
 module.exports = client;

@@ -2,10 +2,9 @@ const router = require('express').Router();
 const UserController = require('../../controllers/usersControllers');
 let usersController = new UserController();
 const authorization = require('../../middlewares/authorization');
-const images = require('../../utils/images');
+const uploadImage = require('../../utils/imageBox');
 const Jwt = require('../../utils/jwt');
-
-// GET requests
+const upload = require('../../utils/multer');
 
 router.get('/:id', authorization, async (req, res, next) => {
   try {
@@ -14,11 +13,10 @@ router.get('/:id', authorization, async (req, res, next) => {
   }
 });
 
-// POST requests
-
-// SIGNUP new user
-router.post('/signup',images.profile , async (req, res, next) => {
+router.post('/signup', upload.single('profile'), async (req, res, next) => {
   try {
+    let img = req.file.path;
+    let imgUrl = await uploadImage(img, 'profile');
     let data = {
       fname: req.body.fname,
       lname: req.body.lname,
@@ -31,7 +29,7 @@ router.post('/signup',images.profile , async (req, res, next) => {
       country: req.body.country,
       bio: req.body.bio,
       verified: req.body.verified,
-      profile_pic : req.file.path
+      profile_pic: imgUrl,
     };
     await usersController.signUp(data);
     res.status(201).json({ message: 'created' });
@@ -40,7 +38,6 @@ router.post('/signup',images.profile , async (req, res, next) => {
   }
 });
 
-// LOGIN existed user
 router.post('/login', async (req, res, next) => {
   let data = {
     username: req.body.username,
@@ -51,14 +48,10 @@ router.post('/login', async (req, res, next) => {
   next();
 });
 
-// LOGOUT from logged account
 router.post('/logout', (req, res) => {
   res.clearCookie('token').redirect('/login');
 });
 
-// PUT requests
-
-// FOLLOW USER
 router.put('/follow/:followId', authorization, async (req, res, next) => {
   try {
     let token = Jwt.decode(req.cookies.token);
@@ -69,7 +62,7 @@ router.put('/follow/:followId', authorization, async (req, res, next) => {
     next(error);
   }
 });
-// UNFOLLOW USER
+
 router.put('/unfollow/:unfollowId', authorization, async (req, res, next) => {
   try {
     let token = Jwt.decode(req.cookies.token);
@@ -80,8 +73,6 @@ router.put('/unfollow/:unfollowId', authorization, async (req, res, next) => {
     next(error);
   }
 });
-
-// UPDATE name
 
 router.put('/name', authorization, async (req, res, next) => {
   try {
@@ -95,7 +86,6 @@ router.put('/name', authorization, async (req, res, next) => {
   }
 });
 
-//UPDATE password
 router.put('/password', authorization, async (req, res, next) => {
   try {
     let { newPass, oldPass } = req.body;
@@ -107,14 +97,14 @@ router.put('/password', authorization, async (req, res, next) => {
     next(error);
   }
 });
-//UPDATE image
+
 router.put('/image', authorization, async (req, res, next) => {
   try {
   } catch (error) {
     next(error);
   }
 });
-//UPDATE bio
+
 router.put('/bio', authorization, async (req, res, next) => {
   try {
   } catch (error) {
@@ -122,9 +112,6 @@ router.put('/bio', authorization, async (req, res, next) => {
   }
 });
 
-// DELETE requests
-
-// DELETE user
 router.delete('/', authorization, async (req, res, next) => {
   try {
     let password = req.body.password;
