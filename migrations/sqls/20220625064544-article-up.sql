@@ -1,1 +1,9 @@
-/* Replace with your SQL commands */
+CREATE TABLE IF NOT EXISTS articles(
+    id SERIAL PRIMARY KEY ,
+    title VARCHAR(200) NOT NULL,
+    content TEXT NOT NULL,
+    comments INTEGER DEFAULT 0,
+    photo VARCHAR(250),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    user_id VARCHAR(16) REFERENCES users(id) ON DELETE SET NULL
+);
