@@ -25,6 +25,7 @@ if (env == 'dev') {
     user,
     password,
     database,
+    ssl: { rejectUnauthorized: false }
   });
 }
 module.exports = client;
