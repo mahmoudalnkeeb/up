@@ -28,7 +28,7 @@ router.get('/', authorization, async (req, res, next) => {
   }
 });
 
-router.get('/userPosts', authorization, async (req, res, next) => {
+router.get('/userposts', authorization, async (req, res, next) => {
   try {
     let token = Jwt.decode(req.cookies.token);
     let id = token.userId;

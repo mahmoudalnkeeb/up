@@ -10,7 +10,6 @@ class PostsController {
     return userPosts;
   }
   async getFollowingPosts(id, created_at) {
-    console.log(created_at);
     let newPosts = await posts.getFollowingPosts(id, created_at);
     return newPosts;
   }

@@ -39,7 +39,7 @@ class Post {
   }
 
   async upPost(id) {
-    let query = 'SELECT * FROM posts WHERE id = $1';
+    let query = 'UPDATE posts SET ups = ups + 1 WHERE id = $1';
     let con = await db.connect();
     let res = await con.query(query, [id]);
     let post = res.rows[0];
