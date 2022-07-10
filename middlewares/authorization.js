@@ -5,6 +5,7 @@ const authorization = (req, res, next) => {
   if (authorized) {
     return next();
   } else {
+    req.bool = false
     return res.status(401).json({ message: 'unauthorized' });
   }
 };

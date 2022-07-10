@@ -59,7 +59,7 @@ router.post(
   }
 );
 
-router.put('/up', async (req, res, next) => {
+router.put('/up', authorization, async (req, res, next) => {
   try {
     let id = req.query.id;
     await postsController.upPost(id);
@@ -69,7 +69,7 @@ router.put('/up', async (req, res, next) => {
   }
 });
 
-router.put('/', async (req, res, next) => {
+router.put('/', authorization, async (req, res, next) => {
   try {
     let { id, content } = req.body;
     await postsController.editPost(id, content);
@@ -79,7 +79,7 @@ router.put('/', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', authorization, async (req, res, next) => {
   try {
     let id = req.params.id;
     await postsController.deletePost(id);

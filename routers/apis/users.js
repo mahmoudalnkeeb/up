@@ -39,17 +39,25 @@ router.post('/signup', upload.single('profile'), async (req, res, next) => {
 });
 
 router.post('/login', async (req, res, next) => {
-  let data = {
-    username: req.body.username,
-    password: req.body.password,
-  };
-  let response = await usersController.login(data);
-  res.cookie('token', response).redirect(301, '/home');
-  next();
+  try {
+    let data = {
+      username: req.body.username,
+      password: req.body.password,
+    };
+    let response = await usersController.login(data);
+    let oneDay = 60 * 60 * 24;
+    res.cookie('token', response, { maxAge: oneDay }).redirect(200, '/home');
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.post('/logout', (req, res) => {
-  res.clearCookie('token').redirect('/login');
+router.get('/logout', authorization, (req, res, next) => {
+  try {
+    res.clearCookie('token').redirect('/login');
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.put('/follow/:followId', authorization, async (req, res, next) => {
