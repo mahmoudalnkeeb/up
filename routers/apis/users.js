@@ -84,10 +84,10 @@ router.put('/unfollow/:unfollowId', authorization, async (req, res, next) => {
 
 router.put('/name', authorization, async (req, res, next) => {
   try {
-    let { fname, lname } = req.body;
+    let { fname, lname, password } = req.body;
     let token = Jwt.decode(req.cookies.token);
     let id = token.userId;
-    let newName = await usersController.updateName(fname, lname, id);
+    let newName = await usersController.updateName(fname, lname, password, id);
     return res.json(newName);
   } catch (error) {
     next(error);

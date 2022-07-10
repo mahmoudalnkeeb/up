@@ -18,7 +18,6 @@ app.use(
 );
 // cross origins
 let origins = process.env.ORIGINS.split(';');
-console.log(origins);
 app.use(
   cors({
     origin: origins,
@@ -31,6 +30,7 @@ app.use(router);
 app.use(errHandler);
 // start server
 let port = process.env.PORT || 4000;
+let host = process.env.HOST || 'http://localhost'
 app.listen(port, () => {
-  console.log(`app is running on http://localhost:${port}`);
+  console.log(`app is running on ${host}:${port}`);
 });

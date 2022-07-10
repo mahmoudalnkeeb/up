@@ -119,6 +119,7 @@
                                     <td><code>
                                         {<br>&nbsp&nbsp&nbsp"fname":"string"<br>
                                         <br>&nbsp&nbsp&nbsp"lname":"string"<br>
+                                        <br>&nbsp&nbsp&nbsp"password":"string"<br>
                                         }
                                     </code></td>
                                     <td>--</td>
@@ -177,11 +178,204 @@
                 </li>
                 <li class="section">
                     <h2 class="badge text-bg-success">/posts</h2>
-                    <ul></ul>
+                    <div class="table-responsive">
+                        <table class="table table-success">
+                            <thead>
+                                <tr>
+                                    <th scope="col">description</th>
+                                    <th scope="col">path</th>
+                                    <th scope="col">method</th>
+                                    <th scope="col">body</th>
+                                    <th scope="col">parameters</th>
+                                    <th scope="col">queries</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">get post by it's id</th>
+                                    <td>/posts/:id</td>
+                                    <td>GET</td>
+                                    <td>--</td>
+                                    <td>id:integer</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">
+                                        get 10 posts sorted by created_at
+                                        <br>
+                                        last post fetched's created_at sent as a query
+                                        <br>
+                                        to get the next 10 posts
+                                    </th>
+                                    <td>/posts/</td>
+                                    <td>GET</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>?created_at=date (last created_at fetched)</td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">
+                                        Get user posts to give permssion to
+                                        <br>
+                                        edit or delete his posts
+                                    </th>
+                                    <td>/posts/userPosts</td>
+                                    <td>GET</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">Create new post</th>
+                                    <td>/posts/create</td>
+                                    <td>POST</td>
+                                    <td>
+                                        <code>
+                                        {
+                                            <br>&nbsp&nbsp&nbsp"content":"string"<br>
+                                            <br>&nbsp&nbsp&nbsp"post":"image/file"<br>
+                                        }
+                                        </code>
+                                    </td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">up post</th>
+                                    <td>/posts/up</td>
+                                    <td>PUT</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>?id=integer (post id)</td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">edit post content</th>
+                                    <td>/posts/</td>
+                                    <td>PUT</td>
+                                    <td>
+                                        <code>
+                                        {
+                                            <br>&nbsp&nbsp&nbsp"id":integer<br>
+                                            <br>&nbsp&nbsp&nbsp"content":"string"<br>
+                                        }
+                                        </code>
+                                    </td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">Delete post by id</th>
+                                    <td>/posts/:id</td>
+                                    <td>DELETE</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
                 </li>
                 <li class="section">
                     <h2 class="badge text-bg-success">/articles</h2>
-                    <ul></ul>
+                    <div class="table-responsive">
+                        <table class="table table-success">
+                            <thead>
+                                <tr>
+                                    <th scope="col">description</th>
+                                    <th scope="col">path</th>
+                                    <th scope="col">method</th>
+                                    <th scope="col">body</th>
+                                    <th scope="col">parameters</th>
+                                    <th scope="col">queries</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">get article by it's id</th>
+                                    <td>/articles/:id</td>
+                                    <td>GET</td>
+                                    <td>--</td>
+                                    <td>id:integer</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">
+                                        get 10 articles sorted by created_at
+                                        <br>
+                                        last article fetched's created_at sent as a query
+                                        <br>
+                                        to get the next 10 articles
+                                    </th>
+                                    <td>/articles/</td>
+                                    <td>GET</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>?created_at=date (last created_at fetched)</td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">
+                                        Get user articles to give permssion to
+                                        <br>
+                                        edit or delete his articles
+                                    </th>
+                                    <td>/articles/userarticles</td>
+                                    <td>GET</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">Create new article</th>
+                                    <td>/articles/create</td>
+                                    <td>POST</td>
+                                    <td>
+                                        <code>
+                                        {
+                                            <br>&nbsp&nbsp&nbsp"title":"string"<br>
+                                            <br>&nbsp&nbsp&nbsp"content":"string"<br>
+                                            <br>&nbsp&nbsp&nbsp"article":"image/file"<br>
+                                        }
+                                        </code>
+                                    </td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">up article</th>
+                                    <td>/articles/up</td>
+                                    <td>PUT</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>?id=integer (article id)</td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">edit article content</th>
+                                    <td>/articles/</td>
+                                    <td>PUT</td>
+                                    <td>
+                                        <code>
+                                        {
+                                            <br>&nbsp&nbsp&nbsp"id":integer<br>
+                                            <br>&nbsp&nbsp&nbsp"content":"string"<br>
+                                        }
+                                        </code>
+                                    </td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <th style="vertical-align: middle;" scope="row">Delete article by id</th>
+                                    <td>/articles/:id</td>
+                                    <td>DELETE</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
                 </li>
                 <li class="section">
                     <h2 class="badge text-bg-success">/reports</h2>

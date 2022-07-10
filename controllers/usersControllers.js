@@ -4,7 +4,6 @@ const user = new User();
 const Jwt = require('../utils/jwt');
 const Id = require('../utils/genId');
 class UserController {
-  // CREATE controller methods
   async signUp(data) {
     let newData = {
       id: new Id(16).generate(),
@@ -24,7 +23,6 @@ class UserController {
     return { message: 'created successfully' };
   }
 
-  // READ controller methods
   async login(data) {
     let username = data.username,
       password = data.password;
@@ -36,42 +34,32 @@ class UserController {
     }
     return { message: 'wrong data' };
   }
+
   async getuserById(id) {
     let userData = await user.getuserById(id);
     return userData;
   }
 
-  // DELETE controller methods
-  async deleteUser(id, password) {
+  async follow(id, follow_id) {
+    let followUser = await user.follow(id, follow_id);
+    return followUser;
+  }
+
+  async unfollow(id, unfollow_id) {
+    let unfollowUser = await user.unfollow(id, unfollow_id);
+    return unfollowUser;
+  }
+
+  async updateName(fname, lname, pass, id) {
     let userPass = await user.getPass(id);
     let hashedPass = await userPass.password;
-    if (bcrypt.compare(hashedPass, password)) {
-      let res = await user.delete(id, password);
-      return res;
+    if (bcrypt.compare(hashedPass, pass)) {
+      return await user.updateName(fname, lname, id);
     } else {
       return { message: 'wrong password' };
     }
   }
 
-  // UPDATE controller methods
-
-  // FOLLOW METHOD
-  async follow(id, follow_id) {
-    let followUser = await user.follow(id, follow_id);
-    return followUser
-  }
-  // UNFOLLOW METHOD
-  async unfollow(id, unfollow_id) {
-    let unfollowUser = await user.unfollow(id, unfollow_id);
-    return unfollowUser
-  }
-
-  // CHANGE NAME
-  async updateName(fname, lname, id) {
-    return await user.updateName(fname, lname, id);
-  }
-
-  // CHANGE PASSWORD
   async updatePass(oldPass, newPass, id) {
     let userPass = await user.getPass(id);
     let hashedPass = await userPass.password;
@@ -84,11 +72,20 @@ class UserController {
     }
   }
 
-  // CHANGE PROFILE PICTURE
   async updatePhoto(newPhoto, id) {}
 
-  // CHANGE BIO
   async updateBio(newBio, id) {}
+
+  async deleteUser(id, password) {
+    let userPass = await user.getPass(id);
+    let hashedPass = await userPass.password;
+    if (bcrypt.compare(hashedPass, password)) {
+      let res = await user.delete(id, password);
+      return res;
+    } else {
+      return { message: 'wrong password' };
+    }
+  }
 }
 
 module.exports = UserController;
