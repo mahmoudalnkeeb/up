@@ -53,27 +53,27 @@ router.post(
 );
 router.put('/up', authorization, async (req, res, next) => {
   try {
-    let id = req.query.id
-    let article = await articlesController.upArticle(id)
-    res.status(200).json(article)
+    let id = req.query.id;
+    let article = await articlesController.upArticle(id);
+    res.status(200).json(article);
   } catch (error) {
     next(error);
   }
 });
 router.put('/', authorization, async (req, res, next) => {
   try {
-    let {id ,title , content} = req.body
-    let article = await articlesController.editArticle(id , content , title)
-    res.status(200).json(article)
+    let { id, title, content } = req.body;
+    let article = await articlesController.editArticle(id, content, title);
+    res.status(200).json(article);
   } catch (error) {
     next(error);
   }
 });
 router.delete('/:id', authorization, async (req, res, next) => {
   try {
-    let id = req.params.id
-    let article = await articlesController.deleteArticle(id)
-    res.status(200).json(article)
+    let id = req.params.id;
+    let article = await articlesController.deleteArticle(id);
+    res.status(200).json(article);
   } catch (error) {
     next(error);
   }
