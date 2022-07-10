@@ -12,23 +12,46 @@ body {
   height: 100vh;
 }
 
-.container{
+.container {
   padding: 0;
   margin: 0;
 }
-ul{
+ul {
   list-style: none;
 }
-li{
+li {
   margin: 10px;
 }
 .table > tbody > tr > td {
   vertical-align: middle;
   line-height: normal;
   padding: 20px;
-
 }
-.badge{
+.badge {
   padding: 10px 20px !important;
   font-size: 24px !important;
+}
+.donate {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 400;
+  font-family: inherit !important;
+  text-align: center;
+  background-color: #eee;
+}
+
+.donate p{
+  margin-bottom: 10px;
+}
+.donate p:last-of-type{
+  margin-bottom: 30px;
+}
+.donate h1{
+  margin-bottom: 10px;
+  color: #8a26b5;
 }
