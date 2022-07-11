@@ -2,8 +2,8 @@ const pg = require('pg');
 const parser = require('pg-connection-string').parse;
 const dotenv = require('dotenv');
 dotenv.config();
-const databaseUrlDev = process.env.DATABASE_URL_DEV;
-const databaseUrl= process.env.DATABASE_URL;
+const databaseUrl = process.env.DATABASE_URL;
+const databaseUrlDev= process.env.DATABASE_URL_DEV;
 const env = process.env.ENV;
 
 let client;
