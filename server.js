@@ -30,17 +30,23 @@ app.use(
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(router);
-app2.use(secRouter)
+app2.use(secRouter);
 // err handler
 app.use(errHandler);
 // start server
 let port = process.env.PORT || 4000;
-let host = process.env.HOST || 'http://localhost'
-let host2 = process.env.HOST2 || 'http://localhost'
+let host = process.env.HOST || 'http://localhost';
+let host2 = process.env.HOST2 || 'http://localhost';
 
-app.listen(port,host, () => {
-  console.log(`app is running on http://${host}:${port}`);
-});
-app2.listen(port,host2, () => {
-  console.log(`app is running on http://${host2}:${port}`);
-});
+if (ENV == 'dev') {
+  app.listen(port, host, () => {
+    console.log(`app is running on http://${host}:${port}`);
+  });
+  app2.listen(port, host2, () => {
+    console.log(`app is running on http://${host2}:${port}`);
+  });
+} else {
+  app.listen(port, () => {
+    console.log(`app is running on http://${host}:${port}`);
+  });
+}
