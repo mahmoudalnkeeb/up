@@ -38,11 +38,13 @@ let port = process.env.PORT || 4000;
 let host = process.env.HOST || 'http://localhost';
 let host2 = process.env.HOST2 || 'http://localhost';
 const env = process.env.ENV;
-env === 'dev'
-  ? app2.listen(port, host2, () => {
-      console.log(`app is running on http://${host2}:${port}`);
-    })
-  : console.log('production');
-app.listen(port, () => {
-  console.log(`app is running on http://${host}:${port}`);
-});
+if (env === 'dev') {
+  app2.listen(port, host2, () => {
+    console.log(`app is running on http://${host2}:${port}`);
+  });
+} else {
+  app.use(secRouter);
+  app.listen(port, () => {
+    console.log(`app is running on http://${host}:${port}`);
+  });
+}
