@@ -15,4 +15,4 @@ secRouter.get('/donate', (req, res, next) => {
   }
 });
 
-module.exports = secRouter
+module.exports = secRouter;

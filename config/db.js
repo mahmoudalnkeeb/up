@@ -6,11 +6,11 @@ const databaseUrl = process.env.DATABASE_URL;
 const databaseUrlDev= process.env.DATABASE_URL_DEV;
 const env = process.env.ENV;
 
-let client;
+let pool;
 
 if (env == 'dev') {
   let { host, port, user, password, database } = parser(databaseUrlDev);
-  client = new pg.Pool({
+  pool = new pg.Pool({
     host,
     port,
     user,
@@ -19,13 +19,14 @@ if (env == 'dev') {
   });
 } else {
   let { host, port, user, password, database } = parser(databaseUrl);
-  client = new pg.Pool({
+  pool = new pg.Pool({
     host,
     port,
     user,
     password,
     database,
-    ssl: { rejectUnauthorized: false }
+    ssl: { rejectUnauthorized: false },
+    max:20
   });
 }
-module.exports = client;
+module.exports = pool;

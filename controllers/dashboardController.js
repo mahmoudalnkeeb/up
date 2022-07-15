@@ -1,11 +1,19 @@
-const Article = require('../models/article');
-const Post = require('../models/post');
-const User = require('../models/user');
+const Dashboard = require('../models/services/dashboard');
+const date = require('../utils/date');
+const Jwt = require('../utils/jwt');
 
 class DashboardController {
   // READ methods
-  static async adminLogin(username , password) {
-
+  static async adminLogin(username, password) {
+    let admin = await Dashboard.adminLogin(username, password);
+    if (admin) {
+      let jwt = new Jwt(admin.id, admin.user, Date.now());
+      return {
+        message: jwt.sign(),
+        admin: true,
+      };
+    }
+    return { message: 'wrong data', admin: false };
   }
   static async getAllUsers() {}
   static async getUserById() {}
