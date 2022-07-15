@@ -1,13 +1,15 @@
+const logger = require('../middlewares/logger');
+
 const secRouter = require('express').Router();
 
-secRouter.get('/', (req, res, next) => {
+secRouter.get('/', logger, (req, res, next) => {
   try {
     res.render('index');
   } catch (error) {
     next(error);
   }
 });
-secRouter.get('/donate', (req, res, next) => {
+secRouter.get('/donate', logger, (req, res, next) => {
   try {
     res.render('donate');
   } catch (error) {

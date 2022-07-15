@@ -7,7 +7,6 @@ const dotenv = require('dotenv');
 const errHandler = require('./middlewares/errHandler');
 const router = require('./routers/mainRouter');
 const secRouter = require('./routers/secRouter');
-const logger = require('./middlewares/logger');
 const app = express();
 const app2 = express();
 dotenv.config();
@@ -35,7 +34,6 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(logger);
 app.use(router);
 app2.use(secRouter);
 

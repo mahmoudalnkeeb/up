@@ -8,8 +8,6 @@ const uploadImage = async (image, title = 'profile' || 'post' || 'article') => {
     auth_cookie: authCookie,
   });
   let url = response.data[0].original_url;
-  console.log(response);
-  console.log(image);
   return url;
 };
 
