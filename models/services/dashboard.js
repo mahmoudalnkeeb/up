@@ -1,4 +1,4 @@
-const client = require('../../config/db');
+const pool = require('../../config/db');
 
 class Dashboard {
   // READ methods
@@ -7,18 +7,29 @@ class Dashboard {
       pass = process.env.ADMIN_PASS,
       id = process.env.ADMIN_ID;
     if (username == user && password == pass) {
-      console.log(true);
       return { user, id };
     }
     return false;
   }
-  static async getAllUsers() {}
+  static async getAllUsers() {
+    let sql = 'SELECT * FROM users';
+    let res = await pool.query(sql);
+    return res.rows;
+  }
   static async getUserById() {}
-  static async getAllPosts() {}
+  static async getAllPosts() {
+    let sql = 'SELECT * FROM posts';
+    let res = await pool.query(sql);
+    return res.rows;
+  }
   static async getPostById() {}
   static async getAllPostsComments() {}
   static async getPostCommentById() {}
-  static async getAllArticles() {}
+  static async getAllArticles() {
+    let sql = 'SELECT * FROM articles';
+    let res = await pool.query(sql);
+    return res.rows;
+  }
   static async getArticleById() {}
   static async getAllArticlesComments() {}
   static async getArticleCommentById() {}

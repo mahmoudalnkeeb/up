@@ -15,7 +15,7 @@ dotenv.config();
 const env = process.env.ENV;
 const port = process.env.PORT || 4000;
 const host = process.env.HOST || 'http://localhost';
-const host2 = process.env.HOST2 || 'http://localhost';
+const host2 = process.env.HOST2 || 'http://localhost2';
 
 // view engine & static files path
 app.set('view engine', 'ejs');
@@ -44,14 +44,14 @@ app.use(errHandler);
 let server;
 if (env === 'dev') {
   server = app.listen(port, host, () => {
-    console.log(`app is running on http://${host}:${port}`);
+    console.log(`main app is running on http://${host}:${port}`);
   });
   app2.listen(port, host2, () => {
-    console.log(`app is running on http://${host2}:${port}`);
+    console.log(`secondary app is running on http://${host2}:${port}`);
   });
 } else {
   app.use(secRouter);
   server = app.listen(port, () => {
-    console.log(`app is running on http://${host}:${port}`);
+    console.log(`app is running on ${port}`);
   });
 }

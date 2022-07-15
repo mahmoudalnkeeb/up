@@ -1,5 +1,4 @@
 const Dashboard = require('../models/services/dashboard');
-const date = require('../utils/date');
 const Jwt = require('../utils/jwt');
 
 class DashboardController {
@@ -9,19 +8,28 @@ class DashboardController {
     if (admin) {
       let jwt = new Jwt(admin.id, admin.user, Date.now());
       return {
-        message: jwt.sign(),
+        token: jwt.sign(),
         admin: true,
       };
     }
     return { message: 'wrong data', admin: false };
   }
-  static async getAllUsers() {}
+  static async getAllUsers() {
+    let users = await Dashboard.getAllUsers();
+    return users;
+  }
   static async getUserById() {}
-  static async getAllPosts() {}
+  static async getAllPosts() {
+    let posts = await Dashboard.getAllPosts();
+    return posts;
+  }
   static async getPostById() {}
   static async getAllPostsComments() {}
   static async getPostCommentById() {}
-  static async getAllArticles() {}
+  static async getAllArticles() {
+    let articles = await Dashboard.getAllArticles();
+    return articles;
+  }
   static async getArticleById() {}
   static async getAllArticlesComments() {}
   static async getArticleCommentById() {}

@@ -1,6 +1,6 @@
 const verify = require('../utils/jwt').verify;
 const isAdmin = (req, res, next) => {
-  if (req.path !== '/admin') {
+  if (req.path !== '/login') {
       console.log(req.path);
     let admin = req.cookies.admin;
     let authorized = verify(admin) ? true : false;
