@@ -15,9 +15,9 @@ router.get('/:id', authorization, async (req, res, next) => {
 
 router.post('/signup', upload.single('profile'), async (req, res, next) => {
   try {
-    let img = req.file.path;
     let data;
-    if (img) {
+    if (req.file) {
+      let img = req.file.path;
       let imgUrl = await uploadImage(img, 'profile');
       data = {
         fname: req.body.fname,
@@ -47,7 +47,7 @@ router.post('/signup', upload.single('profile'), async (req, res, next) => {
         bio: req.body.bio,
         verified: req.body.verified,
         profile_pic: 'default-image',
-      }
+      };
     }
     await usersController.signUp(data);
     res.status(201).json({ message: 'created' });
