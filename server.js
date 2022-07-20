@@ -24,9 +24,7 @@ app2.set('view engine', 'ejs');
 app2.use(express.static(path.join(__dirname, 'public')));
 
 // middlewares
-app.use(
-  bodyParser.urlencoded({ extended: false, type: '*/x-www-form-urlencoded' })
-);
+app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
     origin: '*',
